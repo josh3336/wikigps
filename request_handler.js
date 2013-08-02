@@ -20,20 +20,25 @@ exports.handleRequest = function (req, res) {
   if ( req.method==='POST' ){
     console.log('handling POST');
     req.on('data',function(chunk){
+      console.log('chunk',chunk)
       body+=chunk;
     });
     req.on('end',function(chunk){
       body=JSON.parse(body);
-      console.log('end of request, the body is',body.address);
 
+      console.log('end of request, the body is',body.lat,body.lng);
       var options = {
-        host: 'http://api.wikilocation.org/articles?lat=40.12&lng=-75.341667&radius=1000m',
+        host: 'api.wikilocation.org',
         method: 'GET',
+        lat: body.lat,
+        lng: body.lng,
+        radius: '1000m',
         jsonp: "data",
         headers: {
             'Content-Type': 'application/json'
-        }
+         }
       };
+      console.log('about to get url: ', options.host+options.lat+options.lng+options.radius+options.jsonp)
 
       http.get(options, function(response) {
         console.log(response)
@@ -41,7 +46,9 @@ exports.handleRequest = function (req, res) {
         console.log('HEADERS: ' + JSON.stringify(response.headers));
         res.end(JSON.stringify(response.headers))
       }).on('error', function(e) {
+        console.log('options',options)
         console.log('ERROR: ' + e.message);
+        console.log(e)
       });
 
 
@@ -64,6 +71,12 @@ exports.handleRequest = function (req, res) {
     }
     if(req.url==='/handle_posts.js'){
       filePath=path.join(__dirname,"handle_posts.js");
+      file = fs.readFileSync(filePath);
+      res.writeHead(200,{'Content-Type':'script'});
+      res.end(file);
+    }
+    if(req.url==='/handle_posts_clientapicall.js'){
+      filePath=path.join(__dirname,"handle_posts_clientapicall.js");
       file = fs.readFileSync(filePath);
       res.writeHead(200,{'Content-Type':'script'});
       res.end(file);

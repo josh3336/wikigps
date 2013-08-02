@@ -35,16 +35,18 @@
 // };
 var serverurl="http://127.0.0.1:8080";
 
-handle_posts=function(posted){
-  console.log('handling',posted);
-  var url = {};
-  url.address=posted;
-  url=JSON.stringify(url);
-  if(posted !==''){
+handle_posts=function(lat,lng){
+  console.log('handling',lat,lng);
+  var params = {};
+  params.lat=lat;
+  params.lng=lng
+  params=JSON.stringify(params)
+  if(params.lng !==''  && params.lat !== ''){
+    console.log(params.lat,params.lng)
     $.ajax(serverurl, {
       'content-type': 'application/json',
       type: 'POST',
-      data: url,
+      data: params,
       success: function(data){
 
         console.log('Message submitted to server.', data);

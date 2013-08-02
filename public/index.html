@@ -11,7 +11,8 @@
 
   $('#post').submit(function(event){
       event.preventDefault();
-      handle_posts($('#url').val())
+      console.log('posting')
+      handle_posts($('#lat').val(),$('#lng').val())
     });
 
 
@@ -20,8 +21,13 @@
 
 </head>
 <body>
-  <form id='post' method="POST">
-    <input type="input" name="url" id='url'>search term</input>
+  <form id='post'>
+    <input type="input" name="lat" id='lat' value = '40.12'>lat:</input>
+
+  </form>
+  <form id='posta'>
+    <input type="input" name="lng" id='lng' value = '-75.341667'>lng:</input>
+
   </form>
   <div id='main'></div>
 </body>
