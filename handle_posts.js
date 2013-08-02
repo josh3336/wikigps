@@ -35,14 +35,14 @@
 // };
 var serverurl="http://127.0.0.1:8080";
 
-handle_posts=function(lat,lng){
+handle_posts=function(lat,lng,results){
   console.log('handling',lat,lng);
   var params = {};
   params.lat=lat;
-  params.lng=lng
-  params=JSON.stringify(params)
+  params.lng=lng;
+  params=JSON.stringify(params);
   if(params.lng !==''  && params.lat !== ''){
-    console.log(params.lat,params.lng)
+    console.log(params.lat,params.lng);
     $.ajax(serverurl, {
       'content-type': 'application/json',
       type: 'POST',
@@ -50,12 +50,12 @@ handle_posts=function(lat,lng){
       success: function(data){
 
         console.log('Message submitted to server.', data);
-        dishes=JSON.parse(data);
-        console.log('dishes',dishes.length)
-        $('#main').html('')
+        // dishes=JSON.parse(data);
+        //$('#main').html('');
          // $('.main').append(data.map(function(message) {
          //  return "<div class='message'>"+dish.url+"</div>";
 
+        results(data)
       },
       error: function(data) {
         console.log('Ajax POST request failed');

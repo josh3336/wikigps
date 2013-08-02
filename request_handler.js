@@ -3,6 +3,9 @@ var path = require('path');
 var url = require('url');
 var http = require("http");
 var https = require("https");
+var request = require('request')
+var seperatedata = require('./seperatedata.js')
+
 var filePath;
 var file;
 var fs = require('fs');
@@ -27,32 +30,24 @@ exports.handleRequest = function (req, res) {
       body=JSON.parse(body);
 
       console.log('end of request, the body is',body.lat,body.lng);
-      var options = {
-        host: 'api.wikilocation.org',
-        method: 'GET',
-        lat: body.lat,
-        lng: body.lng,
-        radius: '1000m',
-        jsonp: "data",
-        headers: {
-            'Content-Type': 'application/json'
-         }
-      };
-      console.log('about to get url: ', options.host+options.lat+options.lng+options.radius+options.jsonp)
-
-      http.get(options, function(response) {
-        console.log(response)
-        console.log('STATUS: ' + response.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(response.headers));
-        res.end(JSON.stringify(response.headers))
-      }).on('error', function(e) {
-        console.log('options',options)
-        console.log('ERROR: ' + e.message);
-        console.log(e)
+      
+      var request = require("request");
+      request({
+        uri: 'http://api.wikilocation.org',
+        qs:{'lat':body.lat, 
+          'lng':body.lng,
+          'radius':'1000m',
+          'jsonp' : 'data'},
+        method: "GET"
+        }, function(error, response, body) {
+          if (!error && response.statusCode == 200) {
+            results = body.slice(5,body.length-2); // slices off data tag and end for proper formatting
+            results=JSON.parse(results);
+            seperatedata.setupformap(results);
+            res.end(JSON.stringify(results));
+          }
+          else{console.log('error',error);}
       });
-
-
-
     });
   }
   else if (req.method === 'GET') {
@@ -64,6 +59,7 @@ exports.handleRequest = function (req, res) {
       res.end(file);
     }
     if(req.url === '/google'){
+      console.log('serving google map page')
       filePath = path.join(__dirname, "testing/googlemaps.html");
       file = fs.readFileSync(filePath);
       res.writeHead(200,{'Content-Type' : 'text/html'});
