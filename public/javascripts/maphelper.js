@@ -1,41 +1,52 @@
 function initialize() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.watchPosition(success, error);
   } else {
     alert('geolocation not supported');
   }
 
   function success(position) {
     console.log('posting');
-    var myLatlng= new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+    CurrentLocation= new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     var mapOptions = {
-      center: myLatlng,
+      center: CurrentLocation,
       zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions);
     //sets current position onto map
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        title:"current position!"
+    var navmarker = new google.maps.Marker({
+        position: CurrentLocation,
+        title:"current position!",
+        icon:"http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+        draggable:true
     });
-    marker.setMap(map);
+    navmarker.setMap(map);
     //grab local places and set onto map
     handle_posts(position.coords.latitude,position.coords.longitude,function(data){
          //console.log('--------data--',data)
-         results=JSON.parse(data);
-         markers=[]
+         var results=JSON.parse(data);
+         var markers=[];
+         var focusmarker;
          for(var i = 0 ; i < results.articles.length; i++){
-            results.articles[i]['id'];
             var myLatlng= new google.maps.LatLng(results.articles[i]['lat'],results.articles[i]['lng']);
             var markerb= new google.maps.Marker({
               position: myLatlng,
-              title: results.articles[i]['title']
-            })
-            markers.push(markerb)
+              title: results.articles[i]['title'],
+              wikiurl: results.articles[i]['mobileurl'],
+              wikiID: results.articles[i]['id']
+            });
+            markers.push(markerb);
             google.maps.event.addListener(markers[i], 'click', function() {
-              console.log(this.title);
+              if ( focusmarker ){
+                focusmarker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+              }
+              this.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+              console.log(this);
+              //$('#wikifocus').load('http://en.m.wikipedia.org/w/index.php?curid=693612 #content-wrapper');
+              grab_wikis(this.wikiID);
+              focusmarker = this;
             }); 
             markerb.setMap(map);
         }
@@ -45,4 +56,5 @@ function initialize() {
     console.log('errror',msg);
   }
 }
+
 google.maps.event.addDomListener(window, 'load', initialize);

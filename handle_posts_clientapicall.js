@@ -30,3 +30,25 @@ handle_posts=function(lat,lng){
     });
   };
 };
+
+
+grab_wikis=function(url){
+  console.log('handling',lat,lng);
+  var url = {};
+  url=JSON.stringify(url);
+  if(lat !==''){
+    $.ajax({
+      url: url,
+      success: function(data) {
+        // create an unordered list of headlines
+        console.log(data)
+        $('main').html('')
+        // append this list to the document body
+        $('body').append(data);
+      },
+      error: function() {
+        console.log('error');
+      }
+    });
+  };
+};

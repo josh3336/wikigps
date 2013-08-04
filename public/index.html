@@ -3,19 +3,16 @@
 <head>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script src="/javascripts/handle_posts.js"></script>
+  <script src="/javascripts/ajax_requests.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
   <script>
   $(function() {
-
-  $('#post').submit(function(event){
-      event.preventDefault();
-      console.log('posting')
-      handle_posts($('#lat').val(),$('#lng').val())
+    $('#post').submit(function(event){
+        event.preventDefault();
+        console.log('posting')
+        handle_posts($('#lat').val(),$('#lng').val())
     });
-
-
   });
   </script>
 
