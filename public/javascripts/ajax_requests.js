@@ -62,7 +62,9 @@ grab_wikis=function(wikiID){
           }
         }
       }
-    $('#wikifocus').append(el.children().closest('p')[0]);
+    //handle weird cases where coordinates are first <p>  
+    if(el.children().closest('p').find('#coordinates').length > 0){$('#wikifocus').append(el.children().closest('p')[1]);}
+    else{$('#wikifocus').append(el.children().closest('p')[0]);}
     },
     error: function(e) {
       console.log('error',e);
