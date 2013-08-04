@@ -42,7 +42,7 @@ app.post('/google',function(req,res){
       uri: 'http://api.wikilocation.org',
       qs:{'lat':body.lat, 
         'lng':body.lng,
-        'radius':'2000m',
+        'radius':'1000m',
         'jsonp' : 'data'},
       method: "GET"
       }, function(error, response, body) {

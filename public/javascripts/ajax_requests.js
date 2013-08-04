@@ -27,9 +27,7 @@ handle_posts=function(lat,lng,results){
   }
 };
 
-
-
-grab_wikis=function(wikiID){
+grab_wiki=function(wikiID){
   var url=serverurl+'/wiki';
   var params = {};
   params.wikiID = wikiID;
@@ -42,10 +40,7 @@ grab_wikis=function(wikiID){
     success: function(wikiinfo) {
       // create an unordered list of headlines
       wikiinfo=JSON.parse(wikiinfo);
-      console.log(wikiinfo);
-
       // append this list to the document body
-      console.log(JSON.stringify(wikiinfo.query.pages[wikiID].revisions[0]['*']));
       $('#wikifocus').html('');
       $('#wikifocus').append('<h3>'+wikiinfo.query.pages[wikiID].title+'</h3>');
 
