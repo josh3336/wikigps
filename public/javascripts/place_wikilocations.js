@@ -24,7 +24,8 @@ var place_wikilocations = function(data,map){
       this.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
       console.log(this);
       //$('#wikifocus').load('http://en.m.wikipedia.org/w/index.php?curid=693612 #content-wrapper');
-      grab_wiki(this.wikiID);
+      console.log('titlebefore',this.title)
+      grab_wiki(this.wikiID,this.title);
       focusmarker = this;
     }); 
     markerb.setMap(map);
@@ -37,7 +38,7 @@ var distancebetweenlocations = function(location_a,location_b){
   a = location_a.position.lat() - location_b.position.lat();
   b = location_a.position.lng() - location_b.position.lng();
   c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
-  return c 
+  return c;
 }
 
 /**
