@@ -1,0 +1,17 @@
+{
+  "name": "wikigps",
+  "version": "0.0.0",
+  "description": "Show Wikipedia pages for places near you",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josh3336/wikigps.git"
+  },
+  "author": "",
+  "license": "BSD"
+}
