@@ -1,14 +1,15 @@
 function initialize() {
   if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.watchPosition(watchsuccess,watcherror);
   } else {
     alert('geolocation not supported');
   }
 
   function success(position) {
-    console.log('arguements',arguments)
+    console.log('arguments',arguments);
     console.log('posting');
-    markers=[]
+    markers=[];
     CurrentLocation= new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     var mapOptions = {
       center: CurrentLocation,
@@ -38,6 +39,7 @@ function initialize() {
       markers = getmarkers_prox(navmarker,markers);
       google.maps.event.trigger(markers[0],'click');
     });
+
     google.maps.event.addListener(navmarker,'dragend',function(){  
       console.log(navmarker.position.lat());
       console.log(navmarker.getPosition());
@@ -61,6 +63,30 @@ function initialize() {
   function error(msg) {
     console.log('errror',msg);
   }
-}
 
+  function watchsuccess(position){
+    navmarker.position.lat = position.coords.latitude;
+    navmarker.position.lng = position.coords.longitude;
+    map.setCenter(navmarker.getPosition());
+    markers = getmarkers_prox(navmarker,markers);
+    google.maps.event.trigger(markers[0],'click');
+    console.log('haversine distance',haversine(CurrentLocation,navmarker.getPosition()));
+    if(haversine(CurrentLocation,navmarker.getPosition())>500){
+      console.log('distance is greater then 500');
+      var geoposition = {coords : {}};
+      geoposition['coords']['latitude'] = navmarker.position.lat();
+      geoposition['coords']['longitude'] = navmarker.position.lng();
+      success(geoposition); 
+      handle_posts(position.coords.latitude,position.coords.longitude,function(data){
+        markers = place_wikilocations(data,map);
+        markers = getmarkers_prox(navmarker,markers);
+        google.maps.event.trigger(markers[0],'click');
+      });
+    }
+  }
+  function watcherror(error){
+    watcherror('error');
+
+  }
+}
 google.maps.event.addDomListener(window, 'load', initialize);
