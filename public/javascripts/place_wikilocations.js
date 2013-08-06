@@ -33,23 +33,13 @@ var place_wikilocations = function(data,map){
   return markers
 };
 
-
-var distancebetweenlocations = function(location_a,location_b){
-  a = location_a.position.lat() - location_b.position.lat();
-  b = location_a.position.lng() - location_b.position.lng();
-  c = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
-  return c;
-}
-
 /**
  * uses haversine formula to return distance between two coordinates in meters
  * @param {object} location_1
  * @param {object} location_2
  * @return {Number} d
  */
-var haversine = function(location_1,location_2){
-  console.log('haversine',location_1)
-  
+var haversine = function(location_1,location_2){  
   Number.prototype.toRad = function() {
      return this * Math.PI / 180;
   }
@@ -82,11 +72,10 @@ var haversine = function(location_1,location_2){
 var getmarkers_prox = function(currentloc, otherlocations){
   for(var markerind = 0 ; markerind < otherlocations.length; markerind++){
     otherlocations[markerind]['distancefromnav']=
-      distancebetweenlocations(currentloc,otherlocations[markerind]);
+      haversine(currentloc.position,otherlocations[markerind].position);
   }
   otherlocations.sort(function(a,b){
     return a.distancefromnav - b.distancefromnav
   })
-  console.log(otherlocations)
   return otherlocations
 }

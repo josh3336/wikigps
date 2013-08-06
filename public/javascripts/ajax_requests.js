@@ -2,7 +2,7 @@
 var serverurl="http://127.0.0.1:3000";
 
 handle_posts=function(lat,lng,results){
-  var url=serverurl+'/google'
+  var url=serverurl+'/home'
   var params = {};
   params.lat=lat;
   params.lng=lng;

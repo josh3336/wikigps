@@ -8,6 +8,7 @@ function initialize() {
   function success(position) {
     console.log('arguements',arguments)
     console.log('posting');
+    markers=[]
     CurrentLocation= new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     var mapOptions = {
       center: CurrentLocation,
@@ -16,6 +17,11 @@ function initialize() {
     };
     var map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions);
+
+    setTimeout(function() {
+      google.maps.event.trigger(map,'resize');
+    }, 500);
+
     //sets current position onto map
     var navmarker = new google.maps.Marker({
       position: CurrentLocation,

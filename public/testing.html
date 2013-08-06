@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>My Page</title> 
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0HJcZvPVvQjIuvqSr96JLEbj3krfR8p8&sensor=true">
+    </script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/javascripts/maphelper.js"></script>
+    <script src="/javascripts/place_wikilocations.js"></script>
+    <script src= '/javascripts/ajax_requests.js'></script>
+    <script src="/javascripts/list_helper.js"></script>
+    <link rel='stylesheet' type = 'text/css' href="/stylesheets/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+</head> 
+<body> 
+
+<div data-role="page">
+
+  <div data-role="header">
+    <a href="list" data-role="button" data-icon="arrow-d" id='listbutton'>List</a> 
+    <h1>Map</h1>
+    <a href="favorites.html" data-role="button" data-icon="arrow-d">Starred</a> 
+
+  </div><!-- /header -->
+
+  <div data-role="content" id= 'content'>
+    <div class='map'><div id="map-canvas"></div></div>
+    <div id="wikifocus">
+      <h3></h3>
+    </div>
+  </div><!-- /content -->
+
+</div><!-- /page -->
+</body>
+</html>

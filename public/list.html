@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>List Page</title> 
+<body> 
+
+<div data-role="page" id='pagelist'>
+
+  <div data-role="header">
+    <a href="testing" data-role="button" data-icon="arrow-d">Map</a> 
+    <h1>List</h1>
+    <a href="favorites.html" data-role="button" data-icon="arrow-d">Starred</a> 
+
+  </div><!-- /header -->
+
+  <div data-role="content" id= 'content'>
+  <ul data-role="listview" data-inset="true" id='list'>
+  </ul>
+  </div><!-- /content -->
+
+  <script>
+  $('#pagelist').on('pageinit',function(){
+    append_proxlist(7)
+  });
+  </script>
+</div><!-- /page -->
+</body>
+</html>
+
+

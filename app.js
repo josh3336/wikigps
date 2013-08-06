@@ -10,24 +10,30 @@ var app = express();
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/index|/',function(req,res){
-  filePath = path.join(__dirname, "public/index.html");
-  file=fs.readFileSync(filePath);
-  console.log('need to serve index');
-  res.writeHead(200,{'Content-Type' : 'text/html'});
-  res.end(file);
-  res.send('Hello World');
-});
-
-app.get('/google',function(req,res){
+app.get('/home',function(req,res){
   console.log('serving google map page');
   filePath = path.join(__dirname, "public/googlemaps.html");
   file = fs.readFileSync(filePath);
   res.writeHead(200,{'Content-Type' : 'text/html'});
   res.end(file);
 });
+app.get('/list',function(req,res){
+  console.log('serving google map page');
+  filePath = path.join(__dirname, "public/list.html");
+  file = fs.readFileSync(filePath);
+  res.writeHead(200,{'Content-Type' : 'text/html'});
+  res.end(file);
+});
 
-app.post('/google',function(req,res){
+app.get('/testing',function(req,res){
+  console.log('serving google map page');
+  filePath = path.join(__dirname, "public/testing.html");
+  file = fs.readFileSync(filePath);
+  res.writeHead(200,{'Content-Type' : 'text/html'});
+  res.end(file);
+});
+
+app.post('/home',function(req,res){
   var body = '';
   console.log('handling POST',req.url);
   req.on('data',function(chunk){
