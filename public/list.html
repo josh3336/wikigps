@@ -14,14 +14,27 @@
   </div><!-- /header -->
 
   <div data-role="content" id= 'content'>
-  <ul data-role="listview" data-inset="true" id='list'>
-  </ul>
+    <div id='listAddr'>
+      <ul data-role="listview" id='list'>
+      </ul>
+    </div>
+    <div id="listwikifocus">
+    </div>
   </div><!-- /content -->
 
   <script>
-  $('#pagelist').on('pageinit',function(){
+
+    $('#pagelist').on('pageinit',function(){
     append_proxlist(7)
+     $('#listAddr li').bind('click', function () {
+          console.log('wtf click')
+          $('#listAddr li').attr("data-theme", "c").removeClass("ui-btn-up-b").removeClass('ui-btn-hover-b').addClass("ui-btn-up-c").addClass('ui-btn-hover-c');
+          $(this).attr("data-theme", "b").removeClass("ui-btn-up-c").removeClass('ui-btn-hover-c').addClass("ui-btn-up-b").addClass('ui-btn-hover-b');
+          google.maps.event.trigger(markers[1],'click');
+
+      });
   });
+  $('#listwikifocus').append($('#wikifocus').children())
   </script>
 </div><!-- /page -->
 </body>
