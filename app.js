@@ -5,6 +5,7 @@ var fs = require('fs');
 var express = require("express");
 var app = express();
 
+var request = require("request");
 
 
 app.use(app.router);
@@ -43,7 +44,6 @@ app.post('/home',function(req,res){
   req.on('end',function(chunk){
     body=JSON.parse(body);
     console.log('end of request, the body is',body.lat,body.lng);
-    var request = require("request");
     request({
       uri: 'http://api.wikilocation.org',
       qs:{'lat':body.lat, 
@@ -71,7 +71,6 @@ app.post('/wiki',function(req,res){
   req.on('end',function(chunk){
     body=JSON.parse(body);
     console.log('end of request, the body is',body);
-    var request = require("request");
     request({
       uri: 'http://en.wikipedia.org/w/api.php',
       qs:{'pageids':body.wikiID, 
