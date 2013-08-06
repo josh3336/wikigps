@@ -24,7 +24,7 @@ var place_wikilocations = function(data,map){
       this.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
       console.log(this);
       //$('#wikifocus').load('http://en.m.wikipedia.org/w/index.php?curid=693612 #content-wrapper');
-      console.log('titlebefore',this.title)
+      console.log('titlebefore',this.title);
       grab_wiki(this.wikiID,this.title,this.wikiurl);
       focusmarker = this;
     }); 
@@ -42,7 +42,7 @@ var place_wikilocations = function(data,map){
 var haversine = function(location_1,location_2){  
   Number.prototype.toRad = function() {
      return this * Math.PI / 180;
-  }
+  };
   var lat2 = location_2.lat(); 
   var lon2 = location_2.lng(); 
   var lat1 = location_1.lat(); 
@@ -62,7 +62,7 @@ var haversine = function(location_1,location_2){
 
   return d * 1000;
 
-}
+};
 /**
  * determines proximity of markers away from nav and returns a sorted list of 
  * markers by distanceaway
