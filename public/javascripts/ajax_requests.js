@@ -1,8 +1,8 @@
 
-var serverurl="http://127.0.0.1:3000";
+var serverurl="";
 
 handle_posts=function(lat,lng,results){
-  var url=serverurl+'/home'
+  var url=serverurl+'/home';
   var params = {};
   params.lat=lat;
   params.lng=lng;
@@ -17,7 +17,7 @@ handle_posts=function(lat,lng,results){
       success: function(data){
 
         console.log('Message submitted to server.', data);
-        results(data)
+        results(data);
       },
       error: function(data) {
         console.log('Ajax POST request failed');
@@ -28,7 +28,7 @@ handle_posts=function(lat,lng,results){
 };
 
 grab_wiki=function(wikiID,title,wikiurl){
-  console.log('title',title)
+  console.log('title',title);
   var url=serverurl+'/wiki';
   var params = {};
   params.wikiID = wikiID;
