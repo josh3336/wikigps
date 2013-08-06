@@ -19,12 +19,12 @@
 </head> 
 <body> 
 
-<div data-role="page">
+<div data-role="page" id ='pagehome'>
 
   <div data-role="header">
     <a href="list" data-role="button" data-icon="arrow-d" id='listbutton'>List</a> 
     <h1>Map</h1>
-    <a href="favorites.html" data-role="button" data-icon="arrow-d">Starred</a> 
+    <a href="favorites.html" data-role="button" data-icon="star">Starred</a> 
 
   </div><!-- /header -->
 
@@ -34,7 +34,11 @@
       <h3></h3>
     </div>
   </div><!-- /content -->
-
+  <script>
+    $('#pagehome').on('pagebeforeshow',function(){
+      $('#wikifocus').append($('#listwikifocus').children())
+    })
+  </script> 
 </div><!-- /page -->
 </body>
 </html>

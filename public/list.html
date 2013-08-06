@@ -30,11 +30,15 @@
           console.log('wtf click')
           $('#listAddr li').attr("data-theme", "c").removeClass("ui-btn-up-b").removeClass('ui-btn-hover-b').addClass("ui-btn-up-c").addClass('ui-btn-hover-c');
           $(this).attr("data-theme", "b").removeClass("ui-btn-up-c").removeClass('ui-btn-hover-c').addClass("ui-btn-up-b").addClass('ui-btn-hover-b');
-          google.maps.event.trigger(markers[1],'click');
+          google.maps.event.trigger(markers[parseInt($(this).attr('id'))],'click');
+          // $('#listwikifocus').html('')
+          // $('#listwikifocus').append($('#wikifocus').children())
+          $("#list").listview("refresh");
 
       });
   });
-  $('#listwikifocus').append($('#wikifocus').children())
+
+ $('#listwikifocus').append($('#wikifocus').children())
   </script>
 </div><!-- /page -->
 </body>
