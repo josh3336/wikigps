@@ -18,6 +18,7 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions);
 
+
     setTimeout(function() {
       google.maps.event.trigger(map,'resize');
     }, 500);
@@ -25,14 +26,13 @@ function initialize() {
     //sets current position onto map
     // need following code if i have to test drag feature
 
-    var navmarker = new google.maps.Marker({
+    navmarker = new google.maps.Marker({
       position: CurrentLocation,
       title:"current position!",
-      animation: google.maps.Animation.DROP,
       icon:"http://maps.google.com/mapfiles/ms/icons/green-dot.png",
       draggable:true
     });
-    // navmarker.setMap(map);
+    navmarker.setMap(map);
 
     //grab local wiki entries and place onto map include listener if clicked
     handle_posts(position.coords.latitude,position.coords.longitude,function(data){
@@ -65,24 +65,19 @@ function initialize() {
     console.log('errror',msg);
   }
 
+
+
   function watchsuccess(position){
 
     var navlocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-
-    navmarker = new google.maps.Marker({
-      position: navlocation,
-      title:"current position!",
-      animation: google.maps.Animation.DROP,
-      icon:"http://maps.google.com/mapfiles/ms/icons/green-dot.png",
-      draggable:true
-    });
-
-    navmarker.setMap(map);
+    navmarker.setPosition(navlocation);
 
     console.log('watchposition lat:',position.coords.latitude,position.coords.longitude)
 
     map.setCenter(navmarker.getPosition());
     markers = getmarkers_prox(navmarker,markers);
+    google.maps.event.trigger(markers[0],'click');
+    
     console.log('haversine distance',haversine(CurrentLocation,navmarker.getPosition()));
     if(haversine(CurrentLocation,navmarker.getPosition())>500){
       console.log('distance is greater then 500');
