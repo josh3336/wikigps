@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>List Page</title> 
+<body> 
+
+<div data-role="page" id='pagefav'>
+
+  <div data-role="header">
+    <a href="testing" data-role="button" data-icon="home">Map</a> 
+    <h1>Favorites</h1>
+    <a href="list" data-role="button" data-icon="arrow-d">List</a> 
+
+  </div><!-- /header -->
+
+  <div data-role="content" id= 'content'>
+    <div id='favlistAddr'>
+      <ul data-role="listview" id='favlist'>
+      </ul>
+    </div>
+  </div><!-- /content -->
+
+  <script>
+
+    $('#pagefav').on('pageinit',function(){
+    append_favlist(Favorites)
+     $('#favlistAddr li').bind('click', function () {
+          console.log('wtf click')
+          $('#favlistAddr li').attr("data-theme", "c").removeClass("ui-btn-up-b").removeClass('ui-btn-hover-b').addClass("ui-btn-up-c").addClass('ui-btn-hover-c');
+          $(this).attr("data-theme", "b").removeClass("ui-btn-up-c").removeClass('ui-btn-hover-c').addClass("ui-btn-up-b").addClass('ui-btn-hover-b');
+          // $('#listwikifocus').html('')
+          // $('#listwikifocus').append($('#wikifocus').children())
+          debugger
+          toggle_markers(markers)
+          toggle_markers(Favorites)
+          $("#favlist").listview("refresh");
+
+      });
+  });
+
+  </script>
+</div><!-- /page -->
+</body>
+</html>

@@ -19,12 +19,19 @@ app.get('/home',function(req,res){
   res.end(file);
 });
 app.get('/list',function(req,res){
-  console.log('serving google map page');
   filePath = path.join(__dirname, "public/list.html");
   file = fs.readFileSync(filePath);
   res.writeHead(200,{'Content-Type' : 'text/html'});
   res.end(file);
 });
+app.get('/favorites',function(req,res){
+  console.log('serving google map page');
+  filePath = path.join(__dirname, "public/favorites.html");
+  file = fs.readFileSync(filePath);
+  res.writeHead(200,{'Content-Type' : 'text/html'});
+  res.end(file);
+});
+
 
 app.get('/testing',function(req,res){
   console.log('serving google map page');

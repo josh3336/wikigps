@@ -44,6 +44,11 @@ grab_wiki=function(wikiID,title,wikiurl){
       // append this list to the document body
       $('#wikifocus').html('');
       $('#wikifocus').append('<h3><a rel="external" targe="_blank" href='+wikiurl+'>'+title+'</a></h3>');
+      $('#wikifocus').append('<div id=buttonPlaceHolder></div>');
+      $('h3').append('<a href="#" data-role="button" data-icon="star" data-iconpos="notext" data-inline="true" id="star"></a>');
+      $('#pagehome').trigger('create');
+
+      star_click();
 
       var el = $('<div></div>');//make fake dom element
       el.html(wikiinfo.query.pages[wikiID].revisions[0]['*']);//grabs whole first section an append to dom
