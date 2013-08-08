@@ -11,6 +11,9 @@ var place_markers = function (markers){
   }
 };
 
+var center_map = function (marker){
+  map.setCenter(marker.getPosition());
+}
 var return_favmarkers = function (markers){
   var fav_markers=[];
   for (var i =0; i < markers.length; i ++){

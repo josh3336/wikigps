@@ -38,6 +38,14 @@
   </div><!-- /content -->
   <script>
     $('#pagehome').on('pagebeforeshow',function(){
+     try{
+      center_map(navmarker)
+      }
+      catch(err){
+        console.log('error',err)
+      }
+
+    
       $('#wikifocus').append($('#listwikifocus').children())
       if($('#favcontent').length){
         $('#content').prepend($('#favcontent').find('.map'))

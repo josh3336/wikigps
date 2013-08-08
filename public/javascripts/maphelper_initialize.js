@@ -1,7 +1,7 @@
 function initialize() {
-  Favorites=[]
-  markers=[]
-  Focusmarker ={}
+  Favorites=[];
+  markers=[];
+  Focusmarker ={};
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
@@ -42,7 +42,7 @@ function initialize() {
     google.maps.event.addListener(navmarker,'dragend',function(){  
       console.log(navmarker.position.lat());
       console.log(navmarker.getPosition());
-      map.setCenter(navmarker.getPosition());
+      center_map(navmarker);
       markers = getmarkers_prox(navmarker,markers);
       console.log('haversine distance',haversine(CurrentLocation,navmarker.getPosition()));
       if(haversine(CurrentLocation,navmarker.getPosition())>500){

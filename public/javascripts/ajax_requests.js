@@ -1,5 +1,24 @@
 
 var serverurl="";
+test_post = function(text){
+  url = serverurl
+  params = {"text" : text};
+  params = JSON.stringify(params);
+  console.log("submitting:",params)
+ $.ajax(url, {
+      'content-type': 'application/json',
+      type: 'POST',
+      data: params,
+      success: function(data){
+
+        context.decodeAudioData(data)
+        
+      },
+      error: function(data) {
+        console.log('Ajax POST request failed');
+      }
+    });
+  };
 
 handle_posts=function(lat,lng,results){
   var url=serverurl+'/home';

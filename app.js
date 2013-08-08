@@ -41,6 +41,33 @@ app.get('/testing',function(req,res){
   res.end(file);
 });
 
+app.post('/',function(req,res){
+  var body='';
+  req.on('data',function(chunk){
+    console.log('chunk',chunk);
+    body+=chunk;
+  });
+  req.on('end',function(chunk){
+    body=JSON.parse(body);
+    console.log(body)
+    console.log('end of request, the body is',body.text);
+    request({
+
+      uri: 'http://api.ttsengine.com/v1/tts?',
+      qs:{'text': body.text,
+          'format': 'mp3',
+          'key': '567531a6abe069c1f6b8419873292522'},
+      method: "GET"
+      }, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log('Results of ttsengine query: ',body);
+          results = body.slice(5,body.length-2); // slices off data tag and end for proper formatting
+          res.end(results);
+        }
+        else{console.log('error',error);}
+    });
+  });
+});
 app.post('/home',function(req,res){
   var body = '';
   console.log('handling POST',req.url);
