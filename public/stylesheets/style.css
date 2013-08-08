@@ -40,3 +40,22 @@ ul{
 .makeYellow{
   background: yellow !important;
 }
+
+
+.map {
+    padding: 0;
+    position : absolute;
+    top : 40px;
+    right : 0;
+    bottom : 50%;
+    left : 0;
+}
+
+#favlistAddr {
+    padding: 0;
+    position : absolute;
+    top : 50%;
+    right : 0;
+    bottom : 0;
+    left : 0;
+}

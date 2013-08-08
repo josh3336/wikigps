@@ -46,6 +46,9 @@ grab_wiki=function(wikiID,title,wikiurl){
       $('#wikifocus').append('<h3><a rel="external" targe="_blank" href='+wikiurl+'>'+title+'</a></h3>');
       $('#wikifocus').append('<div id=buttonPlaceHolder></div>');
       $('h3').append('<a href="#" data-role="button" data-icon="star" data-iconpos="notext" data-inline="true" id="star"></a>');
+      if(focusmarker.starred===true){
+        $('#star').addClass('makeYellow');
+      }
       $('#pagehome').trigger('create');
 
       star_click();

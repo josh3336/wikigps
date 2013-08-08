@@ -7,9 +7,11 @@ var append_proxlist = function(numbertoappend){
   $("#list").listview("refresh");
 };
 
-var append_favlist = function (favorites){
-  for ( var i = 0 ; i < favorites.length; i++){
-    $('#favlist').append("<li><a href='#'>"+ favorites[i].title +"</a></li>");
+var append_favlist = function (markers){
+  for ( var i = 0 ; i < markers.length; i++){
+    if(markers[i]['starred']===true){
+      $('#favlist').append("<li id='fav"+i.toString()+"'><a href='#'>"+ markers[i].title +"</a></li>");
+    }
   }
   $("#favlist").listview("refresh");
 };

@@ -1,5 +1,7 @@
 function initialize() {
   Favorites=[]
+  markers=[]
+  Focusmarker ={}
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
@@ -7,9 +9,7 @@ function initialize() {
   }
 
   function success(position) {
-    console.log('arguments',arguments);
-    console.log('posting');
-    markers=[];
+    markers=keep_favorites(markers);
     CurrentLocation= new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     var mapOptions = {
       center: CurrentLocation,
@@ -32,7 +32,8 @@ function initialize() {
 
     //grab local wiki entries and place onto map include listener if clicked
     handle_posts(position.coords.latitude,position.coords.longitude,function(data){
-      markers = place_wikilocations(data,map);
+      place_markers(markers);
+      markers = place_newwikilocations(data,map);
       markers = getmarkers_prox(navmarker,markers);
       navigator.geolocation.watchPosition(watchsuccess,watcherror);
       google.maps.event.trigger(markers[0],'click');
@@ -43,7 +44,6 @@ function initialize() {
       console.log(navmarker.getPosition());
       map.setCenter(navmarker.getPosition());
       markers = getmarkers_prox(navmarker,markers);
-      google.maps.event.trigger(markers[0],'click');
       console.log('haversine distance',haversine(CurrentLocation,navmarker.getPosition()));
       if(haversine(CurrentLocation,navmarker.getPosition())>500){
         console.log('distance is greater then 500');
@@ -51,6 +51,9 @@ function initialize() {
         geoposition['coords']['latitude'] = navmarker.position.lat();
         geoposition['coords']['longitude'] = navmarker.position.lng();
         success(geoposition); 
+      }
+      else{
+        google.maps.event.trigger(markers[0],'click');
       }
       //document.getElementById('lat').value = navmarker.position.lat();
       //document.getElementById('lng').value = navmarker.position.lng();

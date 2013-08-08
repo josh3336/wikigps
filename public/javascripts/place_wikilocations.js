@@ -4,28 +4,31 @@
  * @param {object} map
  * @return {array} markers
  */
-var place_wikilocations = function(data,map){
+var place_newwikilocations = function(data,map){
   var results=JSON.parse(data);
-  var markers=[];
-  var focusmarker;
+  focusmarker = {};
   for(var i = 0 ; i < results.articles.length; i++){
     var myLatlng= new google.maps.LatLng(results.articles[i]['lat'],results.articles[i]['lng']);
     var markerb= new google.maps.Marker({
       position: myLatlng,
       title: results.articles[i]['title'],
       wikiurl: results.articles[i]['mobileurl'],
-      wikiID: results.articles[i]['id']
+      wikiID: results.articles[i]['id'],
+      starred: false
     });
     markers.push(markerb);
     google.maps.event.addListener(markers[i], 'click', function() {
-      if ( focusmarker ){
+      if ( focusmarker.title && focusmarker['starred']!=true){
         focusmarker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+      }
+      else if(focusmarker && focusmarker['starred']===true){
+        focusmarker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
       }
       this.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
       console.log(this);
       //$('#wikifocus').load('http://en.m.wikipedia.org/w/index.php?curid=693612 #content-wrapper');
       console.log('titlebefore',this.title);
-      grab_wiki(this.wikiID,this.title,this.wikiurl);
+      grab_wiki(this.wikiID,this.title,this.wikiurl,this.starred);
       focusmarker = this;
     }); 
     markerb.setMap(map);
