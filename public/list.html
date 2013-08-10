@@ -4,9 +4,9 @@
   <title>List Page</title> 
 <body> 
 
-<div data-role="page" id='pagelist'>
+<div data-role="page" id='pagelist' data-dom-cache='true'>
 
-  <div data-role="header">
+  <div data-role="header" data-id="myheader" data-position="fixed">
     <a href="testing" data-role="button" data-icon="home">Map</a> 
     <h1>List</h1>
     <a href="favorites" data-role="button" data-icon="star">Starred</a> 
@@ -22,27 +22,28 @@
     </div>
   </div><!-- /content -->
 
+  <div data-role="footer" data-id = 'myfooter' data-position='fixed'>
+    <a href="#" class='soundbutton' data-role="button" data-icon="delete">Sound</a> 
+  </div><!-- /footer -->
+
   <script>
 
     $('#pagelist').on('pageinit',function(){
     append_proxlist(7)
-     $('#listAddr li').bind('click', function () {
-          console.log('wtf click')
-          if($(this).attr('data-theme')!='b'){
-            google.maps.event.trigger(markers[parseInt($(this).attr('id'))],'click');
-          }
-          $('#listAddr li').attr("data-theme", "c").removeClass("ui-btn-up-b").removeClass('ui-btn-hover-b').addClass("ui-btn-up-c").addClass('ui-btn-hover-c');
-          $(this).attr("data-theme", "b").removeClass("ui-btn-up-c").removeClass('ui-btn-hover-c').addClass("ui-btn-up-b").addClass('ui-btn-hover-b');
+    $('#listAddr li').bind('click', function () {
+      console.log('wtf click')
+      if($(this).attr('data-theme')!='b'){
+        google.maps.event.trigger(Session.markers[parseInt($(this).attr('id'))],'click');
+      }
+      $('#listAddr li').attr("data-theme", "c").removeClass("ui-btn-up-b").removeClass('ui-btn-hover-b').addClass("ui-btn-up-c").addClass('ui-btn-hover-c');
+      $(this).attr("data-theme", "b").removeClass("ui-btn-up-c").removeClass('ui-btn-hover-c').addClass("ui-btn-up-b").addClass('ui-btn-hover-b');
+      $("#list").listview("refresh");
+    });
+      sound_click()
+    });
+    $('#listwikifocus').append($('#wikifocus').children())
+    check_sound('#pagelist')
 
-
-          // $('#listwikifocus').html('')
-          // $('#listwikifocus').append($('#wikifocus').children())
-          $("#list").listview("refresh");
-
-      });
-  });
-
- $('#listwikifocus').append($('#wikifocus').children())
   </script>
 </div><!-- /page -->
 </body>

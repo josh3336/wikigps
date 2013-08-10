@@ -1,8 +1,8 @@
 /**
- * places markers for a set of data on map
+ * places Session.markers for a set of data on map
  * @param {String} data
  * @param {object} map
- * @return {array} markers
+ * @return {array} Session.markers
  */
 var place_newwikilocations = function(data,map){
   var results=JSON.parse(data);
@@ -16,8 +16,8 @@ var place_newwikilocations = function(data,map){
       wikiID: results.articles[i]['id'],
       starred: false
     });
-    markers.push(markerb);
-    google.maps.event.addListener(markers[i], 'click', function() {
+    Session.markers.push(markerb);
+    google.maps.event.addListener(Session.markers[i], 'click', function() {
       if ( focusmarker.title && focusmarker['starred']!=true){
         focusmarker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
       }
@@ -33,7 +33,7 @@ var place_newwikilocations = function(data,map){
     }); 
     markerb.setMap(map);
   }
-  return markers
+  return Session.markers
 };
 
 /**
@@ -67,8 +67,8 @@ var haversine = function(location_1,location_2){
 
 };
 /**
- * determines proximity of markers away from nav and returns a sorted list of 
- * markers by distanceaway
+ * determines proximity of Session.markers away from nav and returns a sorted list of 
+ * Session.markers by distanceaway
  * @param {object} currentloc
  * @param {array} otherlocations
  */

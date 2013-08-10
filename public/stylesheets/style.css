@@ -40,7 +40,12 @@ ul{
 .makeYellow{
   background: yellow !important;
 }
-
+.makeGreen{
+  background: green !important;
+}
+.makeRed{
+  background: red !important;
+}
 
 .map {
     padding: 0;
@@ -58,4 +63,32 @@ ul{
     right : 0;
     bottom : 0;
     left : 0;
+}
+
+
+.shrinkmap{
+    padding: 0;
+    position : absolute;
+    top : 40px;
+    right : 50%;
+    bottom : 75%;
+    left : 0;
+}
+
+.error{
+  display: none;
+}
+
+.footer{
+  position: fixed;
+}
+img {
+  position:relative;
+  float: left;  
+  height: 50%;
+  width: 50%;
+}
+
+p {
+  position: relative;
 }
