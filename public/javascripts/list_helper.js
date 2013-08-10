@@ -10,6 +10,8 @@ var append_proxlist = function(numbertoappend){
 };
 
 var append_favlist = function (markers){
+  debugger;
+  $('#favlist').html('');
   for (var i = 0; i < Session.markers.length; i++){
     if(Session.markers[i]['starred']===true){
       $('#favlist').append("<li id='fav"+i.toString()+"'><a href='#'>"+ Session.markers[i].title +"</a></li>");
@@ -18,6 +20,22 @@ var append_favlist = function (markers){
   $("#favlist").listview("refresh");
 };
 
+var click_focused = function(list){
+  debugger
+  list = list || ''
+  for (var i = 0; i < Session.markers.length; i++){
+    if(Session.focusmarker === Session.markers[i]){
+      $('#' + list + i.toString()).trigger('click');
+    }
+  }
+  // try {
+  //   ("#favlist").listview("refresh");
+
+  // }
+  // catch(err) {
+  //   console.log('favlist not ready throw')
+  // }
+}
 
 
 

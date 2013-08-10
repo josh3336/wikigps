@@ -4,3 +4,4 @@ var html_to_string = function(html){
   var text = div.textContent || div.innerText || "";
   return text
 }
+

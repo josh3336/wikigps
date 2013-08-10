@@ -1,7 +1,7 @@
 function initialize(){
   Session = {
     "favorites" : [],
-    "Session.markers" : [],
+    "markers" : [],
     "focusmarker" : {},
     "sound" : true,
     "navmarker" : {}

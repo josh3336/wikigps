@@ -1,6 +1,6 @@
 function initialize() {
   Session.markers=[];
-  Focusmarker ={};
+  Session.focusmarker ={};
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
@@ -35,6 +35,8 @@ function initialize() {
       Session.markers = place_newwikilocations(data,map);
       Session.markers = getmarkers_prox(Session.navmarker,Session.markers);
       navigator.geolocation.watchPosition(watchsuccess,watcherror);
+      $.mobile.loadPage('list', { showLoadMsg: false });
+      $.mobile.loadPage('favorites', {showLoadMsg: false});
       google.maps.event.trigger(Session.markers[0],'click');
     });
 

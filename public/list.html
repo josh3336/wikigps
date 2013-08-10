@@ -27,23 +27,7 @@
   </div><!-- /footer -->
 
   <script>
-
-    $('#pagelist').on('pageinit',function(){
-    append_proxlist(7)
-    $('#listAddr li').bind('click', function () {
-      console.log('wtf click')
-      if($(this).attr('data-theme')!='b'){
-        google.maps.event.trigger(Session.markers[parseInt($(this).attr('id'))],'click');
-      }
-      $('#listAddr li').attr("data-theme", "c").removeClass("ui-btn-up-b").removeClass('ui-btn-hover-b').addClass("ui-btn-up-c").addClass('ui-btn-hover-c');
-      $(this).attr("data-theme", "b").removeClass("ui-btn-up-c").removeClass('ui-btn-hover-c').addClass("ui-btn-up-b").addClass('ui-btn-hover-b');
-      $("#list").listview("refresh");
-    });
-      sound_click()
-    });
-    $('#listwikifocus').append($('#wikifocus').children())
-    check_sound('#pagelist')
-
+    pagelist_init()
   </script>
 </div><!-- /page -->
 </body>

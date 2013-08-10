@@ -44,6 +44,14 @@ var panto_marker = function (that,marker){
   }
 }
 
+var check_focusmarker = function (favorites){
+  for (var i = 0; i < favorites.length; i++){
+    if (favorites[i] === Session.focusmarker){
+      center_map(Session.focusmarker);
+    }
+  }
+}
+
 var keep_favorites = function (markers){
   var fav_markers=[];
   for (var i =0; i < markers.length; i ++){
@@ -56,7 +64,7 @@ var keep_favorites = function (markers){
 
 var reset_colors = function(markers){
   for (var i = 0 ; i < markers.length; i++){
-    if (focusmarker != markers[i]){
+    if (Session.focusmarker != markers[i]){
       Session.markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
     }
   }

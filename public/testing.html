@@ -15,6 +15,7 @@
     <script src="/javascripts/list_helper.js"></script>
     <script src='/javascripts/maphelper.js'></script>
     <script src='/javascripts/other_helpers.js'></script>
+    <script src='/javascripts/page_initializers.js'></script>
     <script src='/javascripts/event_handlers.js'></script>
     <link rel='stylesheet' type = 'text/css' href="/stylesheets/style.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -46,21 +47,7 @@
   </div><!-- /footer -->
 
   <script>
-    $('#pagehome').on('pagebeforeshow',function(){
-      try{
-        (center_map(CenSession['navmarker']))
-      }
-      catch(err){
-        console.log('error',err)
-      }
-      $('#wikifocus').append($('#listwikifocus').children())
-      if($('#favcontent').length){
-        $('#content').prepend($('#favcontent').find('.map'))
-      place_markers(Session['markers'])
-      }
-    })
-    sound_click()
-    check_sound('#pagehome')
+    pagehome_init()
   </script> 
 </div><!-- /page -->
 

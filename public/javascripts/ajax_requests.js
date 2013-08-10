@@ -80,13 +80,13 @@ handle_posts=function(lat,lng,results){
   }
 };
 
-grab_wiki=function(wikiID,title,wikiurl){
-  console.log('title',title);
+grab_wiki=function(that){
+  console.log('title',that.title);
   var url = serverurl+'/wiki';
   var params = {};
-  params.wikiID = wikiID;
+  params.wikiID = that.wikiID;
   params = JSON.stringify(params);
-  console.log('handling', wikiID);
+  console.log('handling', that.wikiID);
   $.ajax(url,{
     'content-type': 'application/json',
     type: 'POST',
@@ -96,16 +96,13 @@ grab_wiki=function(wikiID,title,wikiurl){
       wikiinfo = JSON.parse(wikiinfo);
       // append this list to the document body
       $('#wikifocus').html('');
-      $('#wikifocus').append('<h3><a rel="external" targe="_blank" href='+wikiurl+'>'+title+'</a></h3>');
+      $('#wikifocus').append('<h3><a rel="external" targe="_blank" href='+that.wikiurl+'>'+that.title+'</a></h3>');
       $('#wikifocus').append('<div id=buttonPlaceHolder></div>');
-      $('h3').append('<a href="#" data-role="button" data-icon="star" data-iconpos="notext" data-inline="true" id="star"></a>');
-      if(focusmarker.starred === true){
-        $('#star').addClass('makeYellow');
-      }
+      $('h3').append('<a href="#" data-role="button" data-icon="star" data-iconpos="notext" data-inline="true" class="star"></a>');
 
-      star_click();
+
       var el = $('<div></div>');//make fake dom element
-      el.html(wikiinfo.query.pages[wikiID].revisions[0]['*']);//grabs whole first section an append to dom
+      el.html(wikiinfo.query.pages[that.wikiID].revisions[0]['*']);//grabs whole first section an append to dom
       console.log(el);
       //checks to make sure img isn't a wiki img if so adds
       images=el.find('img');
@@ -130,9 +127,10 @@ grab_wiki=function(wikiID,title,wikiurl){
       var p_text = html_to_string(wikip);
       p_text.split('. ')[0]
       //append to list wikifocus if it exists
-
-      $('#listwikifocus').html('');
-      $('#listwikifocus').append($('#wikifocus').children());
+  
+      var content = $('#wikifocus').children().clone()
+      $('#listwikifocus').html('')
+      $('#listwikifocus').append(content);
       //parse through and add html tags to all ahrefs
       var links = $('#wikifocus').find('a');
       for (var linkind = 2; linkind < links.length; linkind++){
@@ -141,6 +139,11 @@ grab_wiki=function(wikiID,title,wikiurl){
      // $("#favlist").listview("refresh");
     //  $("#listtorefresh").listview("refresh");
       $('#pagehome').trigger('create');
+      $('#pagelist').trigger('create')
+      star_on_click();
+      if(Session.focusmarker.starred === true){
+        $('.star').addClass('makeYellow');
+      }
     },
     error: function(e) {
       console.log('error',e);
