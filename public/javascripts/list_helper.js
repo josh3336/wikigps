@@ -1,6 +1,7 @@
 
 var append_proxlist = function(numbertoappend){
   //$('#list').html('')
+  $('#list').html('')
   if(Session.markers.length > 0){
     for (var i = 0 ; i < numbertoappend; i++){
       $('#list').append("<li id="+i+"><a href='#'>"+ Session.markers[i].title +'<br>'+'<span id="distance">'+Session.markers[i].distancefromnav.toFixed() +' m'+'</span>'+"</a></li>");
@@ -10,7 +11,6 @@ var append_proxlist = function(numbertoappend){
 };
 
 var append_favlist = function (markers){
-  debugger;
   $('#favlist').html('');
   for (var i = 0; i < Session.markers.length; i++){
     if(Session.markers[i]['starred']===true){
@@ -21,7 +21,6 @@ var append_favlist = function (markers){
 };
 
 var click_focused = function(list){
-  debugger
   list = list || ''
   for (var i = 0; i < Session.markers.length; i++){
     if(Session.focusmarker === Session.markers[i]){

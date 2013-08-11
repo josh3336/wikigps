@@ -32,12 +32,14 @@ function initialize() {
     //grab local wiki entries and place onto map include listener if clicked
     handle_posts(position.coords.latitude,position.coords.longitude,function(data){
       place_markers(Session['markers']);
+      debugger
       Session.markers = place_newwikilocations(data,map);
       Session.markers = getmarkers_prox(Session.navmarker,Session.markers);
-      navigator.geolocation.watchPosition(watchsuccess,watcherror);
+     // navigator.geolocation.watchPosition(watchsuccess,watcherror);
       $.mobile.loadPage('list', { showLoadMsg: false });
       $.mobile.loadPage('favorites', {showLoadMsg: false});
-      google.maps.event.trigger(Session.markers[0],'click');
+      //$('#pagelist').trigger('pageinit')
+      //google.maps.event.trigger(Session.markers[0],'click');
     });
 
     google.maps.event.addListener(Session.navmarker,'dragend',function(){  
@@ -66,7 +68,7 @@ function initialize() {
 
 
   function watchsuccess(position){
-
+    debugger
     var navlocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     Session.navmarker.setPosition(navlocation);
 

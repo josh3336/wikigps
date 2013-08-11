@@ -48,10 +48,10 @@ var pagefav_init = function() {
 };
 
 var pagelist_init = function() {
-     $('#pagelist').on('pageinit',function(){
+  $('#pagelist').on('pageinit',function(){
+    debugger
     append_proxlist(7);
     $('#listAddr li').bind('click', function () {
-      console.log('wtf click');
       if($(this).attr('data-theme')!='b'){
         google.maps.event.trigger(Session.markers[parseInt($(this).attr('id'))],'click');
       }
@@ -59,8 +59,16 @@ var pagelist_init = function() {
       $(this).attr("data-theme", "b").removeClass("ui-btn-up-c").removeClass('ui-btn-hover-c').addClass("ui-btn-up-b").addClass('ui-btn-hover-b');
       $("#list").listview("refresh");
     });
+    debugger
+    $($(this).find('li')[0]).trigger('click')
     click_focused()
     sound_click();
     });
     check_sound('#pagelist');
-}
+    $('#pagelist').on('pagebeforeshow',function(){
+      debugger
+      click_focused()
+    });
+  };
+
+

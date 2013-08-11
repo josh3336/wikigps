@@ -46,20 +46,3 @@ var check_star = function (marker){
     $('.star'.trigger('click'))
   }
 }
-
-// var marker_click = function (marker,Session.focusmarker){
-//   google.maps.event.addListener(marker, 'click', function() {
-//   if ( Session.focusmarker && Session.focusmarker['starred']!=true){
-//     Session.focusmarker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-//   }
-//   else if(Session.focusmarker && Session.focusmarker['starred']===true){
-//     Session.focusmarker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
-//   }
-//   this.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-//   console.log(this);
-//   //$('#wikifocus').load('http://en.m.wikipedia.org/w/index.php?curid=693612 #content-wrapper');
-//   console.log('titlebefore',this.title);
-//   grab_wiki(this);
-//   Session.focusmarker = this;
-// });
-// }

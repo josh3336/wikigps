@@ -28,6 +28,7 @@ var place_newwikilocations = function(data,map){
       console.log(this);
       //$('#wikifocus').load('http://en.m.wikipedia.org/w/index.php?curid=693612 #content-wrapper');
       console.log('titlebefore',this.title);
+      debugger
       grab_wiki(this);
       Session.focusmarker = this;
     }); 

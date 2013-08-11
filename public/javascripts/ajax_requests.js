@@ -1,6 +1,11 @@
 
 var serverurl="";
 test_post = function(text) {
+  debugger
+  window.AudioContext = window.AudioContext||window.webkitAudioContext;
+  context = new AudioContext();
+
+
   url = serverurl;
   soundclip=null;
   params = {"text" : text};
@@ -92,6 +97,7 @@ grab_wiki=function(that){
     type: 'POST',
     data:params,
     success: function(wikiinfo) {
+      debugger
       // create an unordered list of headlines
       wikiinfo = JSON.parse(wikiinfo);
       // append this list to the document body
@@ -126,6 +132,8 @@ grab_wiki=function(that){
       wikip = $(wikip).prop('outerHTML');
       var p_text = html_to_string(wikip);
       p_text.split('. ')[0]
+      
+      //if (Session.sound === true){test_post('hello');}
       //append to list wikifocus if it exists
   
       var content = $('#wikifocus').children().clone()
