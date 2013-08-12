@@ -1,7 +1,6 @@
 
 var serverurl="";
 test_post = function(text) {
-  debugger
   window.AudioContext = window.AudioContext||window.webkitAudioContext;
   context = new AudioContext();
 
@@ -46,20 +45,7 @@ test_post = function(text) {
  //    });
 };
 
-var str2ab = function(str) {
-   var buf = new ArrayBuffer(str.length); // 2 bytes for each char
-   //var bufView = new Uint16Array(buf);
-   for (var i=0, strLen=str.length; i<strLen; i++) {
-     buf[i] = str.charCodeAt(i);
-   }
-   return buf;
-};
-
-
-
-
-
-handle_posts=function(lat,lng,results){
+grab_local = function (lat,lng,results) {
   var url=serverurl+'/home';
   var params = {};
   params.lat = lat;
@@ -85,7 +71,7 @@ handle_posts=function(lat,lng,results){
   }
 };
 
-grab_wiki=function(that){
+grab_wiki = function (that) {
   console.log('title',that.title);
   var url = serverurl+'/wiki';
   var params = {};
@@ -96,8 +82,7 @@ grab_wiki=function(that){
     'content-type': 'application/json',
     type: 'POST',
     data:params,
-    success: function(wikiinfo) {
-      debugger
+    success: function (wikiinfo) {
       // create an unordered list of headlines
       wikiinfo = JSON.parse(wikiinfo);
       // append this list to the document body
@@ -120,24 +105,21 @@ grab_wiki=function(that){
           }
         }
       }
-      //handle weird cases where coordinates are first <p>  
+      //handle weird cases where coordinates are first <p>
       if(el.children().closest('p').find('#coordinates').length > 0){
         var wikip = $('#wikifocus').append(el.children().closest('p')[1]);
       }
       else{
         wikip = $('#wikifocus').append(el.children().closest('p')[0]);
       }
-    
       wikip = wikip.find('p');
       wikip = $(wikip).prop('outerHTML');
       var p_text = html_to_string(wikip);
-      p_text.split('. ')[0]
-      
-      //if (Session.sound === true){test_post('hello');}
+      p_text = p_text.split('. ')[0];
+      if (Session.sound === true){test_post(p_text.slice(0,75));}
       //append to list wikifocus if it exists
-  
-      var content = $('#wikifocus').children().clone()
-      $('#listwikifocus').html('')
+      var content = $('#wikifocus').children().clone();
+      $('#listwikifocus').html('');
       $('#listwikifocus').append(content);
       //parse through and add html tags to all ahrefs
       var links = $('#wikifocus').find('a');
@@ -147,7 +129,7 @@ grab_wiki=function(that){
      // $("#favlist").listview("refresh");
     //  $("#listtorefresh").listview("refresh");
       $('#pagehome').trigger('create');
-      $('#pagelist').trigger('create')
+      $('#pagelist').trigger('create');
       star_on_click();
       if(Session.focusmarker.starred === true){
         $('.star').addClass('makeYellow');

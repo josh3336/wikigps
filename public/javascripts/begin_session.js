@@ -3,8 +3,9 @@ function initialize(){
     "favorites" : [],
     "markers" : [],
     "focusmarker" : {},
-    "sound" : true,
-    "navmarker" : {}
+    "sound" : false,
+    "navmarker" : {},
+    "startlocaiton" : {}
   };
 }
 

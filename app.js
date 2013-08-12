@@ -132,33 +132,6 @@ app.post('/wiki',function(req,res){
   });
 });
 
-
-
-
-
-
-
-
-
-
-var str2ab = function(str) {
-   var buf = new ArrayBuffer(str.length); // 2 bytes for each char
-   //var bufView = new Uint16Array(buf);
-   for (var i=0, strLen=str.length; i<strLen; i++) {
-     buf[i] = str.charCodeAt(i);
-   }
-   return buf;
-};
-
-
-
-
-
-
-
-
-
-
 var port = process.env.PORT || 3000;
 app.listen(port);
 console.log('Express started on port 3000');

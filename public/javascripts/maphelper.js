@@ -78,3 +78,50 @@ var fit_bounds = function (markers){
     latlngbounds.extend(Session.navmarker.getPosition());
     map.fitBounds(latlngbounds);
 } ;
+
+var setmap_onpage = function (position) {
+  Session.startlocation= new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+  var mapOptions = {
+    center: Session.startlocation,
+    zoom: 16,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById("map-canvas"),
+    mapOptions);
+
+  //sets current position onto map
+  // need following code if i have to test drag feature
+  Session.navmarker = new google.maps.Marker({
+    position: Session.startlocation,
+    title:"current position!",
+    icon:"../blue_dot_circle.png",
+    draggable:true
+  });
+  Session.navmarker.setMap(map);
+}
+
+var get_and_map_entries = function (position) {
+    if (Session.markers.length > 0) {
+      remove_markers(Session.markers);
+    }
+    Session['markers'] = keep_favorites(Session['markers']);
+    debugger;
+   //grab local wiki entries and place onto map include listener if clicked
+    grab_local(position.coords.latitude,position.coords.longitude,function(data){
+      // place_markers(Session['markers']);
+      Session.markers = place_newwikilocations(data,map);
+      Session.markers = getmarkers_prox(Session.navmarker,Session.markers);
+     // navigator.geolocation.watchPosition(watchsuccess,watcherror);
+      $.mobile.loadPage('list', { showLoadMsg: false });
+      $.mobile.loadPage('favorites', {showLoadMsg: false});
+      
+      debugger;
+      $('#pagelist').trigger('pageinit');
+      //google.maps.event.trigger(Session.markers[0],'click');
+    });
+
+    on_dragend()
+
+}
+
+

@@ -41,13 +41,12 @@ var pagefav_init = function() {
 
      //fix becuse soundbutton is getting binded twice
      $('.soundbutton').unbind('click');
-     sound_click();
     });
-  sound_click();
   check_sound('#pagefav');
 };
 
 var pagelist_init = function() {
+  debugger
   $('#pagelist').on('pageinit',function(){
     debugger
     append_proxlist(7);
@@ -59,16 +58,13 @@ var pagelist_init = function() {
       $(this).attr("data-theme", "b").removeClass("ui-btn-up-c").removeClass('ui-btn-hover-c').addClass("ui-btn-up-b").addClass('ui-btn-hover-b');
       $("#list").listview("refresh");
     });
-    debugger
-    $($(this).find('li')[0]).trigger('click')
-    click_focused()
-    sound_click();
+    $($(this).find('li')[0]).trigger('click');
+    click_focused();
     });
-    check_sound('#pagelist');
     $('#pagelist').on('pagebeforeshow',function(){
-      debugger
       click_focused()
     });
+    check_sound('#pagelist');
   };
 
 
