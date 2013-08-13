@@ -16,9 +16,8 @@ function initialize() {
   function error(msg) {
     console.log('errror',msg);
   }
-
+//
   function watchsuccess(position){
-    debugger
     var navlocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     Session.navmarker.setPosition(navlocation);
 
@@ -42,7 +41,7 @@ function initialize() {
       });
     }
   }
-  
+
   function watcherror(error){
     watcherror('error');
 

@@ -1,0 +1,55 @@
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>Home p</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <script src='/javascripts/begin_session.js'></script> 
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0HJcZvPVvQjIuvqSr96JLEbj3krfR8p8&sensor=true">
+    </script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/javascripts/maphelper_initialize.js"></script>
+    <script src="/javascripts/place_wikilocations.js"></script>
+    <script src= '/javascripts/ajax_requests.js'></script>
+    <script src="/javascripts/list_helper.js"></script>
+    <script src='/javascripts/maphelper.js'></script>
+    <script src='/javascripts/other_helpers.js'></script>
+    <script src='/javascripts/page_initializers.js'></script>
+    <script src='/javascripts/event_handlers.js'></script>
+    <script src="/buffer-loader.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+    <link rel='stylesheet' href="/stylesheets/style.css"/>
+
+</head> 
+
+<body> 
+<div data-role="page" id ='pagehome' data-dom-cache="true">
+
+  <div data-role="header" data-id="myheader" data-position="fixed">
+    <a href="list" data-role="button" data-icon="arrow-d" id='listbutton'>List</a> 
+    <h1>Map</h1>
+    <a href="favorites" data-role="button" data-icon="star">Starred</a> 
+  </div><!-- /header -->
+
+  <div data-role="content" id= 'content'>
+    <div class='map'><div id="map-canvas"></div></div>
+    <div id="wikifocus">
+      <h3></h3>
+    </div>
+  </div><!-- /content -->
+
+  <div data-role="footer" data-id='myfooter' data-position='fixed' class='footer'>
+    <a href="#" class='soundbutton' data-role="button" data-icon="delete">Sound</a> 
+  </div><!-- /footer -->
+
+  <script>
+    pagehome_init()
+  </script> 
+</div><!-- /page -->
+</body>
+
+</html>

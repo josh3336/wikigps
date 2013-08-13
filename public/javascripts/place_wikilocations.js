@@ -14,26 +14,15 @@ var place_newwikilocations = function(data,map){
       title: results.articles[i]['title'],
       wikiurl: results.articles[i]['mobileurl'],
       wikiID: results.articles[i]['id'],
-      starred: false
+      info : false,
+      starred: false,
+      soundclip: false
     });
     Session.markers.push(markerb);
-    google.maps.event.addListener(Session.markers[i], 'click', function() {
-      if ( Session.focusmarker.title && Session.focusmarker['starred']!=true){
-        Session.focusmarker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-      }
-      else if(Session.focusmarker && Session.focusmarker['starred']===true){
-        Session.focusmarker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
-      }
-      this.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-      console.log(this);
-      //$('#wikifocus').load('http://en.m.wikipedia.org/w/index.php?curid=693612 #content-wrapper');
-      console.log('titlebefore',this.title);
-      grab_wiki(this);
-      Session.focusmarker = this;
-    }); 
+    marker_click_listener(i);
     markerb.setMap(map);
   }
-  return Session.markers
+  return Session.markers;
 };
 
 /**

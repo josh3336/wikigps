@@ -7,83 +7,82 @@ a {
   color: #00B7FF;
 }
 
-#map-canvas{
+#map-canvas {
   height: 100%;
 }
 
 .map {
     padding: 0;
-    position : absolute;
-    top : 40px;
-    right : 0;
-    bottom : 50%;
-    left : 0;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    bottom: 50%;
+    left: 0;
 }
 
 #wikifocus {
     padding: 0;
-    position : absolute;
-    top : 50%;
-    right : 0;
-    bottom : 0;
-    left : 0;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
-#distance{
-  color : blue;
+#distance {
+  color: blue;
 }
 
-ul{
+ul {
   padding-bottom: 30px;
 }
 
-.makeYellow{
+.makeYellow {
   background: yellow !important;
 }
-.makeGreen{
+.makeGreen {
   background: green !important;
 }
-.makeRed{
+.makeRed {
   background: red !important;
 }
 
 .map {
     padding: 0;
-    position : absolute;
-    top : 40px;
-    right : 0;
-    bottom : 50%;
-    left : 0;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    bottom: 50%;
+    left: 0;
 }
 
 #favlistAddr {
     padding: 0;
-    position : absolute;
-    top : 50%;
-    right : 0;
-    bottom : 0;
-    left : 0;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
-
-.shrinkmap{
+.shrinkmap {
     padding: 0;
-    position : absolute;
-    top : 40px;
-    right : 50%;
-    bottom : 75%;
-    left : 0;
+    position: absolute;
+    top: 40px;
+    right: 50%;
+    bottom: 75%;
+    left: 0;
 }
 
-.error{
+.error {
   display: none;
 }
 
-.footer{
+.footer {
   position: fixed;
 }
 img {
-  position:relative;
+  position: relative;
   float: left;  
   height: 50%;
   width: 50%;

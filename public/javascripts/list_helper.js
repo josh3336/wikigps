@@ -27,6 +27,15 @@ var click_focused = function(list){
       $('#' + list + i.toString()).trigger('click');
     }
   }
+};
+
+var focusmarker_place = function(){
+  for (var i = 0 ; i < Session.markers.length; i++){
+    if (Session.markers[i] === Session.focusmarker){
+      return i.toString();
+    }
+  }
+};
   // try {
   //   ("#favlist").listview("refresh");
 
@@ -34,7 +43,6 @@ var click_focused = function(list){
   // catch(err) {
   //   console.log('favlist not ready throw')
   // }
-}
 
 
 

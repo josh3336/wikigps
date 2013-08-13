@@ -36,7 +36,7 @@ var pagefav_init = function() {
         //$(this).trigger('click')
         $("#favlist").listview("refresh");
       });
-      click_focused('fav')
+      click_focused('fav');
       $("#favlist").listview("refresh");
 
      //fix becuse soundbutton is getting binded twice
@@ -46,12 +46,12 @@ var pagefav_init = function() {
 };
 
 var pagelist_init = function() {
-  debugger
+
   $('#pagelist').on('pageinit',function(){
-    debugger
     append_proxlist(7);
     $('#listAddr li').bind('click', function () {
-      if($(this).attr('data-theme')!='b'){
+      var focusmarkerid = focusmarker_place();
+      if($(this).attr('data-theme')!='b' && $(this).attr('id')!=focusmarkerid){
         google.maps.event.trigger(Session.markers[parseInt($(this).attr('id'))],'click');
       }
       $('#listAddr li').attr("data-theme", "c").removeClass("ui-btn-up-b").removeClass('ui-btn-hover-b').addClass("ui-btn-up-c").addClass('ui-btn-hover-c');

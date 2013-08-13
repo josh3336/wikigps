@@ -1,12 +1,8 @@
-
 var path = require('path');
 var fs = require('fs');
-
 var express = require("express");
 var app = express();
-
 var request = require("request");
-
 
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,7 +31,7 @@ app.get('/favorites',function(req,res){
 
 app.get('/testing',function(req,res){
   console.log('serving google map page');
-  filePath = path.join(__dirname, "public/testing.html");
+  filePath = path.join(__dirname, "public/home.html");
   file = fs.readFileSync(filePath);
   res.writeHead(200,{'Content-Type' : 'text/html'});
   res.end(file);
