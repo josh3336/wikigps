@@ -1,4 +1,4 @@
-function initialize() {
+var map_init = function() {
   Session.markers=[];
   Session.focusmarker ={};
   if (navigator.geolocation) {
@@ -16,12 +16,12 @@ function initialize() {
   function error(msg) {
     console.log('errror',msg);
   }
-//
+  
   function watchsuccess(position){
     var navlocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
     Session.navmarker.setPosition(navlocation);
 
-    console.log('watchposition lat:',position.coords.latitude,position.coords.longitude)
+    console.log('watchposition lat:',position.coords.latitude,position.coords.longitude);
 
     map.setCenter(Session.navmarker.getPosition());
     Session.markers = getmarkers_prox(Session.navmarker,Session.markers);
@@ -41,10 +41,9 @@ function initialize() {
       });
     }
   }
-
   function watcherror(error){
     watcherror('error');
 
   }
-}
-google.maps.event.addDomListener(window, 'load', initialize);
+};
+google.maps.event.addDomListener(window, 'load', map_init);
