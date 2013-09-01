@@ -8,20 +8,21 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/home',function(req,res){
-  console.log('serving google map page');
+  console.log('serving home page');
   filePath = path.join(__dirname, "public/googlemaps.html");
   file = fs.readFileSync(filePath);
   res.writeHead(200,{'Content-Type' : 'text/html'});
   res.end(file);
 });
 app.get('/list',function(req,res){
+  console.log('serving list page');
   filePath = path.join(__dirname, "public/list.html");
   file = fs.readFileSync(filePath);
   res.writeHead(200,{'Content-Type' : 'text/html'});
   res.end(file);
 });
 app.get('/favorites',function(req,res){
-  console.log('serving google map page');
+  console.log('serving favorite page');
   filePath = path.join(__dirname, "public/favorites.html");
   file = fs.readFileSync(filePath);
   res.writeHead(200,{'Content-Type' : 'text/html'});
@@ -30,7 +31,7 @@ app.get('/favorites',function(req,res){
 
 
 app.get('/testing',function(req,res){
-  console.log('serving google map page');
+  console.log('serving testing page');
   filePath = path.join(__dirname, "public/home.html");
   file = fs.readFileSync(filePath);
   res.writeHead(200,{'Content-Type' : 'text/html'});
