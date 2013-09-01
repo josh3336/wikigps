@@ -8,8 +8,8 @@ function initialize() {
   }
 
   function success(position) {
-    setmap_onpage(position);
-    get_and_map_entries(position);
+    mapHelper.setmap_onpage(position);
+    mapHelper.get_and_map_entries(position);
    
   }
 

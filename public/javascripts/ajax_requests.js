@@ -90,7 +90,7 @@ grab_wiki = function (that) {
     success: function (wikiinfo) {
       // create an unordered list of headlines
       //debugger
-      place_info(that,wikiinfo)
+      mapHelper.place_info(that,wikiinfo)
 
     },
     error: function(e) {

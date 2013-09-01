@@ -59,7 +59,7 @@ var marker_click_listener = function(index){
     Session.focusmarker = this;
     //$('#wikifocus').load('http://en.m.wikipedia.org/w/index.php?curid=693612 #content-wrapper');
     console.log('titlebefore',this.title);
-    if (this.info){place_info(this,this.info);}
+    if (this.info){mapHelper.place_info(this,this.info);}
     else {grab_wiki(this);}
 
   });
@@ -69,7 +69,7 @@ var on_dragend = function () {
    google.maps.event.addListener(Session.navmarker,'dragend',function(){
       console.log(Session.navmarker.position.lat());
       console.log(Session.navmarker.getPosition());
-      center_map(Session.navmarker);
+      mapHelper.center_map(Session.navmarker);
       Session.markers = getmarkers_prox(Session.navmarker,Session.markers);
       console.log('haversine distance',haversine(Session.startlocation,Session.navmarker.getPosition()));
       if(haversine(Session.startlocation,Session.navmarker.getPosition())>500){
@@ -78,7 +78,7 @@ var on_dragend = function () {
         geoposition['coords']['latitude'] = Session.navmarker.position.lat();
         geoposition['coords']['longitude'] = Session.navmarker.position.lng();
         Session.startlocation = Session.navmarker.getPosition();
-        get_and_map_entries(geoposition);
+        mapHelper.get_and_map_entries(geoposition);
       }
       else{
         if (Session.focusmarker != Session.markers[0]){
