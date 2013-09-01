@@ -19,7 +19,7 @@ var place_newwikilocations = function(data,map){
       soundclip: false
     });
     Session.markers.push(markerb);
-    marker_click_listener(i);
+    event_handlers.marker_click_listener(i);
     markerb.setMap(map);
   }
   return Session.markers;

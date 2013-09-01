@@ -11,8 +11,8 @@ var pagehome_init = function() {
         mapHelper.place_markers(Session['markers']); 
     }
   });
-  sound_click();
-  check_sound('#pagehome');
+  event_handlers.sound_click();
+  event_handlers.check_sound('#pagehome');
   $.mobile.page.prototype.options.domCache = true;
 };
 
@@ -43,7 +43,7 @@ var pagefav_init = function() {
      //fix becuse soundbutton is getting binded twice
      $('.soundbutton').unbind('click');
     });
-  check_sound('#pagefav');
+  event_handlers.check_sound('#pagefav');
 };
 
 var pagelist_init = function() {
@@ -65,7 +65,7 @@ var pagelist_init = function() {
     $('#pagelist').on('pagebeforeshow',function(){
       click_focused()
     });
-    check_sound('#pagelist');
+    event_handlers.check_sound('#pagelist');
   };
 
 

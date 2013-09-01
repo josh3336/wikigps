@@ -1,4 +1,4 @@
-function initialize(){
+(function initialize(){
   Session = {
     "favorites" : [],
     "markers" : [],
@@ -7,6 +7,4 @@ function initialize(){
     "navmarker" : {},
     "startlocaiton" : {}
   };
-}
-
-initialize();
+})();

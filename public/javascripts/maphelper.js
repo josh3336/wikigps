@@ -1,24 +1,23 @@
-var mapHelper = (function(){
+var mapHelper = (function() {
   mapHelper = {};
-
-  mapHelper.toggle_markers = function(markers){
+  mapHelper.toggle_markers = function(markers) {
     for ( var i = 0 ; i < markers.length; i++){
       Session.markers[i].setVisible(!markers[i].getVisible());
     }
     return Session.markers;
   };
 
-  mapHelper.place_markers = function (markers){
+  mapHelper.place_markers = function(markers) {
     for ( var i = 0 ; i < markers.length; i ++){
       markers[i].setMap(map);
     }
   };
 
-  mapHelper.center_map = function (marker){
+  mapHelper.center_map = function(marker) {
     map.setCenter(marker.getPosition());
   };
 
-  mapHelper.return_favmarkers = function (markers){
+  mapHelper.return_favmarkers = function(markers) {
     var fav_markers=[];
     for (var i =0; i < markers.length; i ++){
       if (Session.markers[i].starred===true){
@@ -28,14 +27,14 @@ var mapHelper = (function(){
     return fav_markers;
   };
 
-  mapHelper.remove_markers = function (markers){
+  mapHelper.remove_markers = function(markers) {
     for ( var i = 0 ; i < markers.length; i++){
       markers[i].setMap(null);
     }
     return markers;
   };
 
-  mapHelper.panto_marker = function (that,marker){
+  mapHelper.panto_marker = function(that,marker) {
     that = that || marker;
     if (!marker){
       marker=Session.markers[parseInt($(that).attr('id').slice(3))];
@@ -49,7 +48,7 @@ var mapHelper = (function(){
   };
 
 
-  mapHelper.check_focusmarker = function (favorites){
+  mapHelper.check_focusmarker = function(favorites) {
     for (var i = 0; i < favorites.length; i++){
       if (favorites[i] === Session.focusmarker){
         mapHelper.center_map(Session.focusmarker);
@@ -105,7 +104,7 @@ var mapHelper = (function(){
     });
     Session.navmarker.setMap(map);
 
-    on_dragend();
+    event_handlers.on_dragend();
   };
 
   mapHelper.get_and_map_entries = function (position) {
@@ -176,10 +175,10 @@ var mapHelper = (function(){
   //  $("#listtorefresh").listview("refresh");
     $('#pagehome').trigger('create');
     $('#pagelist').trigger('create');
-    star_on_click();
+    event_handlers.star_on_click();
     if(Session.focusmarker.starred === true){
       $('.star').addClass('makeYellow');
     }
   };
   return mapHelper;
-})();
+}());
