@@ -28,8 +28,6 @@ app.get('/favorites',function(req,res){
   res.writeHead(200,{'Content-Type' : 'text/html'});
   res.end(file);
 });
-
-
 app.get('/testing',function(req,res){
   console.log('serving testing page');
   filePath = path.join(__dirname, "public/home.html");

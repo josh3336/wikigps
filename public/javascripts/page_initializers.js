@@ -13,6 +13,7 @@ var pagehome_init = function() {
   });
   sound_click();
   check_sound('#pagehome');
+  $.mobile.page.prototype.options.domCache = true;
 };
 
 var pagefav_init = function() {
