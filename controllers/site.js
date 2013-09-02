@@ -5,9 +5,9 @@ site.index = function(req, res){
 };
 
 site.list = function(req,res){
-	res.render('list.html')
+	res.render('list.html');
 };
 
 site.favorites = function(req,res){
-	res.render('favorites.html')
+	res.render('favorites.html');
 };
