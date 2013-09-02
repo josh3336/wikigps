@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="/javascripts/ajax_requests.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+  <script>
+  $(function() {
+    $('#post').submit(function(event){
+        event.preventDefault();
+        test_post($('#chatbox').val())
+    });
+  });
+
+  // var context;
+  // window.addEventListener('load', init, false);
+  // function init() {
+  //   try {
+  //     var randomText = null;
+
+  //     // Fix up for prefixing
+  //     console.log('web audio is supported')
+  //     window.AudioContext = window.AudioContext||window.webkitAudioContext;
+  //     context = new AudioContext();
+  //     // debugger;
+  //     new BufferLoader(context, '/', finishedLoadingWavs).loadBuffer(JSON.stringify({"text" : "hello world"}));
+  //   }
+  //   catch(e) {
+  //     alert('Web Audio API is not supported in this browser');
+  //   }
+  // }
+
+
+  // var finishedLoadingWavs = function(buffer){
+  //   console.log("!!!!!!!!!!!");
+  //   var source1 = context.createBufferSource();
+  //   source1.buffer = buffer;
+  //   source1.connect(context.destination);
+  //   source1.start(0);
+  // };
+
+
+  </script>
+
+</head>
+<body>
+  <form id='post'>
+    <input type="textarea" name="lat" id='chatbox'>text:</input>
+  <div id='main'></div>
+</body>
+</html>

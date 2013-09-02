@@ -16,6 +16,8 @@
   "license": "BSD",
   "dependencies": {
     "express": "~3.3.4",
-    "request": "~2.25.0"
+    "request": "~2.25.0",
+    "html": "0.0.7",
+    "ejs": "~0.8.4"
   }
 }

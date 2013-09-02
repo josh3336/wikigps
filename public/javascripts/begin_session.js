@@ -1,4 +1,4 @@
-(function initialize(){
+(function (){
   Session = {
     "favorites" : [],
     "markers" : [],

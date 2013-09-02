@@ -99,7 +99,7 @@ var mapHelper = (function() {
     Session.navmarker = new google.maps.Marker({
       position: Session.startlocation,
       title:"current position!",
-      icon:"../blue_dot_circle.png",
+      icon:"../images/blue_dot_circle.png",
       draggable:true
     });
     Session.navmarker.setMap(map);
