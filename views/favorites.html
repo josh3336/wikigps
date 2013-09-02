@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <title>List Page</title> 
+<body> 
+
+<div data-role="page" id='pagefav' data-dom-cache='true'>
+
+  <div data-role="header" data-id="myheader" data-position="fixed">
+    <a href="/" data-role="button" data-icon="home">Map</a> 
+    <h1>Favorites</h1>
+    <a href="list" data-role="button" data-icon="arrow-d">List</a> 
+
+  </div><!-- /header -->
+
+  <div data-role="content" id= 'favcontent'>
+    <div id='favlistAddr'>
+      <ul data-role="listview" id='favlist'>
+      </ul>
+    </div>
+  </div><!-- /content -->
+
+  <div data-role="footer" data-id='myfooter' data-position='fixed'>
+    <a href="#" class='soundbutton' data-role="button" data-icon="delete">Sound</a> 
+  </div><!-- /footer -->
+
+  <script>
+    page_init.fav()
+  </script>
+</div><!-- /page -->
+</body>
+</html>

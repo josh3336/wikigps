@@ -1,33 +1,17 @@
 var fs = require('fs');
 var request = require("request");
 var path = require('path');
-
+var site = require('../controllers/site.js');
 
 module.exports = function(app){
+  app.get('/', site.index);
+  app.get('/list', site.list);
+  app.get('/favorites', site.favorites);
+
+
   app.get('/home',function(req,res){
     console.log('serving home page');
     filePath = path.join(__dirname, "../public/googlemaps.html");
-    file = fs.readFileSync(filePath);
-    res.writeHead(200,{'Content-Type' : 'text/html'});
-    res.end(file);
-  });
-  app.get('/list',function(req,res){
-    console.log('serving list page');
-    filePath = path.join(__dirname, "../public/list.html");
-    file = fs.readFileSync(filePath);
-    res.writeHead(200,{'Content-Type' : 'text/html'});
-    res.end(file);
-  });
-  app.get('/favorites',function(req,res){
-    console.log('serving favorite page');
-    filePath = path.join(__dirname, "../public/favorites.html");
-    file = fs.readFileSync(filePath);
-    res.writeHead(200,{'Content-Type' : 'text/html'});
-    res.end(file);
-  });
-  app.get('/testing',function(req,res){
-    console.log('serving testing page');
-    filePath = path.join(__dirname, "../public/home.html");
     file = fs.readFileSync(filePath);
     res.writeHead(200,{'Content-Type' : 'text/html'});
     res.end(file);
