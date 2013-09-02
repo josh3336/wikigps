@@ -20,8 +20,9 @@ var page_init = (function(){
 
   page_init.fav = function() {
     $('#pagefav').on('pagebeforeshow',function() {
+      debugger
       $('#favcontent').prepend($('#pagehome').find('.map'));
-      list_helper.append_favlist(Session.markers);
+      listHelper.append_favlist(Session.markers);
       mapHelper.remove_markers(Session.markers);
       var favmarkers=mapHelper.return_favmarkers(Session['markers']);
       mapHelper.reset_colors(favmarkers);
