@@ -1,6 +1,6 @@
 wikigps
 =======
-Check it out: 
+Check it out: http://wikigps.herokuapp.com/
 
 Too often we breeze through life in our own world not aware of what surrounds us, use wikiGPS as a virtual tour guide and learn interesting facts about the world around you.
 
