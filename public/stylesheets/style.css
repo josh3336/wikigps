@@ -11,6 +11,10 @@ a {
   height: 100%;
 }
 
+.ui-fixed-hidden {
+  position: fixed;
+}
+
 .map {
     padding: 0;
     position: absolute;

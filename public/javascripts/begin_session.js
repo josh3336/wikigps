@@ -5,6 +5,7 @@
     "focusmarker" : {},
     "sound" : false,
     "navmarker" : {},
-    "startlocaiton" : {}
+    "startlocaiton" : {},
+    "source1" : null,
   };
 })();

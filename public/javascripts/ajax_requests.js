@@ -1,53 +1,40 @@
 
 var serverurl="";
 get_sound = function(text) {
+  var context;
   window.AudioContext = window.AudioContext||window.webkitAudioContext;
-  context = new AudioContext();
-  soundclip=null;
-  params = {"text" : text};
+  try {
+    context = new AudioContext();
+  }
+  catch(err){
+    console.log('error audio buffer not ready');
+  }
+  if (!context){
+    return;
+  }
+  var soundclip=null;
+  var params = {"text" : text};
   params = JSON.stringify(params);
   console.log("submitting:",params);
 
   if (Session.focusmarker.soundclip === false){
-    new BufferLoader(context, '/', function(buffer){
+    new BufferLoader(context, '/get_sound', function(buffer){
+      // if(Session.source1){
+      //   Session.source1.stop(0);
+      // }
       Session.focusmarker.soundclip = buffer;
-      var source1 = context.createBufferSource();
-      source1.buffer = buffer;
-      source1.connect(context.destination);
-      source1.start(0);
+      Session.source1 = context.createBufferSource();
+      Session.source1.buffer = buffer;
+      Session.source1.connect(context.destination);
+      Session.source1.start(0);
     }).loadBuffer(params);
   }
   else{
-    var source1 = context.createBufferSource();
-    source1.buffer = Session.focusmarker.soundclip
-    source1.connect(context.destination);
-    source1.start(0);
+    Session.source1 = context.createBufferSource();
+    Session.source1.buffer = Session.focusmarker.soundclip;
+    Session.source1.connect(context.destination);
+    Session.source1.start(0);
   }
-
-
- // $.ajax(url, {
- //      'content-type': 'application/json',
- //      type: 'POST',
- //      data: params,
- //      dataType: "text",
-
- //      success: function(bufferstr){
- //        console.log('bufferstr',bufferstr);
- //        buffer = str2ab(bufferstr);
- //        //console.log('typeofbuffer',buffer);
- //        console.log('buffer',buffer);
- //        debugger;
-
- //        context.decodeAudioData(buffer, function(buffered){
- //          soundclip = buffered;
- //        },function(err){
- //          console.log('error in decodeAudioData',err);
- //        });
- //      },
- //      error: function(data) {
- //        console.log('Ajax POST request failed');
- //      }
- //    });
 };
 
 grab_local = function (lat,lng,results) {

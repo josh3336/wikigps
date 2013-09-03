@@ -9,7 +9,7 @@ var listHelper = (function(){
         $('#list').append("<li id="+i+"><a href='#'>"+ Session.markers[i].title +'<br>'+'<span id="distance">'+Session.markers[i].distancefromnav.toFixed() +' m'+'</span>'+"</a></li>");
       }
     }
-    $("#list").listview("refresh");
+    //$("#list").listview("refresh");
   };
 
   listHelper.append_favlist = function(markers) {
@@ -22,11 +22,16 @@ var listHelper = (function(){
     $("#favlist").listview("refresh");
   };
 
-  listHelper.click_focused = function(list) {
+  listHelper.click_focused = function(list,that) {
     list = list || '';
-    for (var i = 0; i < Session.markers.length; i++){
-      if(Session.focusmarker === Session.markers[i]){
-        $('#' + list + i.toString()).trigger('click');
+    if (Object.keys(Session.focusmarker).length === 0){
+      $('#' + list + '0').trigger('click');
+    }
+    else{
+      for (var i = 0; i < Session.markers.length; i++){
+        if(Session.focusmarker === Session.markers[i]){
+          $('#' + list + i.toString()).trigger('click');
+        }
       }
     }
   };

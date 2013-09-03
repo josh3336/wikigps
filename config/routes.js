@@ -10,5 +10,5 @@ module.exports = function(app){
   app.get('/favorites', site.favorites);
   app.post('/home', api_interaction.get_local_wikis);
   app.post('/wiki',api_interaction.get_wiki);
-  app.post('/',api_interaction.get_sound);
+  app.post('/get_sound',api_interaction.get_sound);
 };

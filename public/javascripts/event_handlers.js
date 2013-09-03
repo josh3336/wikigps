@@ -35,9 +35,12 @@ event_handlers = (function() {
     $(page).on('pagebeforeshow',function(){
       if( Session.sound){
         $('.soundbutton').find('.ui-icon').addClass('makeGreen');
+        $('.soundbutton').find('.ui-icon').removeClass('makeRed');
+
       }
       else{
         $('.soundbutton').find('.ui-icon').addClass('makeRed');
+        $('.soundbutton').find('.ui-icon').removeClass('makeGreen');
       }
     });
   };
@@ -76,8 +79,8 @@ event_handlers = (function() {
       mapHelper.center_map(Session.navmarker);
       Session.markers = getmarkers_prox(Session.navmarker,Session.markers);
       console.log('haversine distance',haversine(Session.startlocation,Session.navmarker.getPosition()));
-      if(haversine(Session.startlocation,Session.navmarker.getPosition())>500){
-        console.log('distance is greater then 500');
+      if(haversine(Session.startlocation,Session.navmarker.getPosition())>800){
+        console.log('distance is greater then 800');
         var geoposition = {coords : {}};
         geoposition['coords']['latitude'] = Session.navmarker.position.lat();
         geoposition['coords']['longitude'] = Session.navmarker.position.lng();
